@@ -64,7 +64,7 @@ export default function TaskList({ tasks, deleteTask, updateTaskStatus, startEdi
                 return (
                     <div
                         key={task.id}
-                        className={`group transition-all rounded-xl p-4 border-2 ${
+                        className={`transition-all rounded-xl p-4 border-2 ${
                             overdue 
                                 ? 'bg-red-50 border-red-200 hover:border-red-300' 
                                 : nearDeadline 
@@ -109,7 +109,7 @@ export default function TaskList({ tasks, deleteTask, updateTaskStatus, startEdi
                             <div className="flex items-center gap-2 justify-end">
                                 
                                 {/* Status Dropdown */}
-                                <div className="relative group">
+                                <div className="relative group/status">
                                     <button
                                         className={`px-4 py-2 rounded-lg text-sm font-semibold border-2 transition cursor-pointer ${getStatusBadgeStyle(task.status)} hover:shadow-md`}
                                         title="Thay đổi trạng thái"
@@ -118,7 +118,7 @@ export default function TaskList({ tasks, deleteTask, updateTaskStatus, startEdi
                                     </button>
                                     
                                     {/* Dropdown Menu */}
-                                    <div className="absolute right-0 mt-2 w-48 bg-white border-2 border-gray-300 rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-10">
+                                    <div className="absolute right-0 mt-2 w-48 bg-white border-2 border-gray-300 rounded-lg shadow-xl opacity-0 invisible group-hover/status:opacity-100 group-hover/status:visible transition-all z-10">
                                         {getStatusOptions(task.status).map(status => (
                                             <button
                                                 key={status}

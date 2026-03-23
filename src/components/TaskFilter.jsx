@@ -1,3 +1,5 @@
+import { Search } from 'lucide-react'
+
 export default function TaskFilter({ filter, setFilter, searchTerm, setSearchTerm }) {
     const filters = [
         { value: 'ALL', label: 'Tất cả' },
@@ -9,13 +11,16 @@ export default function TaskFilter({ filter, setFilter, searchTerm, setSearchTer
     return (
         <div className="space-y-4">
             {/* Search */}
-            <input
-                type="text"
-                placeholder="Tìm kiếm công việc..."
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-400 transition-all"
-            />
+            <div className="relative">
+                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" size={20} />
+                <input
+                    type="text"
+                    placeholder="Tìm kiếm công việc..."
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                    className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-400 transition-all"
+                />
+            </div>
 
             {/* Filter Buttons */}
             <div className="flex flex-wrap gap-2">

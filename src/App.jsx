@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { CheckCircle2 } from 'lucide-react'
 import TaskForm from './components/TaskForm';
 import TaskList from './components/TaskList';
 import TaskFilter from './components/TaskFilter';
@@ -73,7 +74,10 @@ function App() {
         
         {/* Header */}
         <div className="text-center mb-10">
-          <h1 className="text-5xl font-bold text-white mb-3">Quản Lý Công Việc</h1>
+          <div className="flex items-center justify-center gap-3 mb-3">
+            <CheckCircle2 size={48} className="text-white" />
+            <h1 className="text-5xl font-bold text-white">Quản Lý Công Việc</h1>
+          </div>
           <p className="text-purple-100 text-lg">Quản lý công việc cá nhân một cách hiệu quả</p>
         </div>
 

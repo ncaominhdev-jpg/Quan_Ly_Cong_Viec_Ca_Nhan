@@ -1,3 +1,5 @@
+import { Calendar, Pencil, Trash2, Clock, Loader, CheckCircle2, AlertCircle } from 'lucide-react'
+
 export default function TaskItem({ task, deleteTask, updateTaskStatus, startEdit }) {
     const formatDeadline = (deadline) => {
         return new Date(deadline).toLocaleString('vi-VN', {
@@ -36,6 +38,21 @@ export default function TaskItem({ task, deleteTask, updateTaskStatus, startEdit
         return labels[status] || status;
     };
 
+    const getStatusIcon = (status) => {
+        switch (status) {
+            case 'TODO':
+                return Clock;
+            case 'In Progress':
+                return Loader;
+            case 'Done':
+                return CheckCircle2;
+            default:
+                return AlertCircle;
+        }
+    };
+
+    const StatusIcon = getStatusIcon(task.status);
+
     return (
         <div className={`p-4 border rounded-lg transition-all duration-200 ${
             isOverdue() ? 'bg-red-50 border-red-300' : 'bg-white border-gray-200'
@@ -46,13 +63,15 @@ export default function TaskItem({ task, deleteTask, updateTaskStatus, startEdit
                     <h3 className="font-semibold text-gray-800 text-lg mb-2">
                         {task.title}
                     </h3>
-                    <div className={`text-sm ${isOverdue() ? 'text-red-600 font-semibold' : 'text-gray-500'}`}>
-                        📅 {formatDeadline(task.deadline)}
+                    <div className={`flex items-center gap-2 text-sm ${isOverdue() ? 'text-red-600 font-semibold' : 'text-gray-500'}`}>
+                        <Calendar size={16} />
+                        {formatDeadline(task.deadline)}
                         {isOverdue() && <span className="ml-2 font-bold">QUÁ HẠN</span>}
                     </div>
                 </div>
 
-                <span className={`px-3 py-1 text-xs font-semibold rounded-full whitespace-nowrap ml-2 ${getStatusColor(task.status)}`}>
+                <span className={`flex items-center gap-1 px-2 py-1 text-xs font-semibold rounded-full whitespace-nowrap ml-2 ${getStatusColor(task.status)}`}>
+                    <StatusIcon size={14} />
                     {getStatusLabel(task.status)}
                 </span>
             </div>
@@ -76,15 +95,17 @@ export default function TaskItem({ task, deleteTask, updateTaskStatus, startEdit
             <div className="flex gap-2 mt-4">
                 <button
                     onClick={() => startEdit(task)}
-                    className="flex-1 bg-blue-500 hover:bg-blue-600 text-white text-sm py-2 px-3 rounded-lg transition-all duration-200"
+                    className="flex-1 flex items-center justify-center gap-2 bg-blue-500 hover:bg-blue-600 text-white text-sm py-2 px-3 rounded-lg transition-all duration-200"
                 >
-                    ✏️ Sửa
+                    <Pencil size={16} />
+                    Sửa
                 </button>
                 <button
                     onClick={() => deleteTask(task.id)}
-                    className="flex-1 bg-red-500 hover:bg-red-600 text-white text-sm py-2 px-3 rounded-lg transition-all duration-200"
+                    className="flex-1 flex items-center justify-center gap-2 bg-red-500 hover:bg-red-600 text-white text-sm py-2 px-3 rounded-lg transition-all duration-200"
                 >
-                    🗑️ Xóa
+                    <Trash2 size={16} />
+                    Xóa
                 </button>
             </div>
         </div>

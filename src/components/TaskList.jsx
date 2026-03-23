@@ -124,7 +124,7 @@ export default function TaskList({ tasks, deleteTask, updateTaskStatus, startEdi
                                     
                                     {/* Dropdown Menu */}
                                     {openDropdown === task.id && (
-                                        <div className="absolute right-0 mt-2 w-48 bg-white border-2 border-gray-300 rounded-lg shadow-xl z-50">
+                                        <div className="absolute right-0 bottom-full mb-2 w-48 bg-white border-2 border-gray-300 rounded-lg shadow-xl z-50">
                                             {getStatusOptions(task.status).map(status => (
                                                 <button
                                                     key={status}

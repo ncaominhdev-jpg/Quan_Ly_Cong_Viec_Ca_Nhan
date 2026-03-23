@@ -1,51 +1,64 @@
 export default function TaskStats({ stats }) {
     const statItems = [
         {
-            label: 'Tổng Công Việc',
+            label: 'Tổng công việc',
             value: stats.total,
             icon: '📋',
-            color: 'from-blue-400 to-blue-600'
+            color: 'from-blue-500 to-blue-600',
+            bgColor: 'bg-blue-50',
+            textColor: 'text-blue-600'
         },
         {
-            label: 'Cần Làm',
+            label: 'Cần làm',
             value: stats.todo,
             icon: '📝',
-            color: 'from-gray-400 to-gray-600'
+            color: 'from-slate-500 to-slate-600',
+            bgColor: 'bg-slate-50',
+            textColor: 'text-slate-600'
         },
         {
-            label: 'Đang Làm',
+            label: 'Đang làm',
             value: stats.inProgress,
-            icon: '⚙️',
-            color: 'from-yellow-400 to-yellow-600'
+            icon: '⚡',
+            color: 'from-amber-500 to-amber-600',
+            bgColor: 'bg-amber-50',
+            textColor: 'text-amber-600'
         },
         {
-            label: 'Hoàn Thành',
+            label: 'Hoàn thành',
             value: stats.completed,
-            icon: '✅',
-            color: 'from-green-400 to-green-600',
+            icon: '✓',
+            color: 'from-emerald-500 to-emerald-600',
+            bgColor: 'bg-emerald-50',
+            textColor: 'text-emerald-600',
             percentage: stats.total > 0 ? Math.round((stats.completed / stats.total) * 100) : 0
         },
         {
-            label: 'Quá Hạn',
+            label: 'Quá hạn',
             value: stats.overdue,
-            icon: '⚠️',
-            color: 'from-red-400 to-red-600'
+            icon: '⚠',
+            color: 'from-red-500 to-red-600',
+            bgColor: 'bg-red-50',
+            textColor: 'text-red-600'
         },
     ];
 
     return (
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3 mb-8">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 mb-12">
             {statItems.map((stat, idx) => (
                 <div
                     key={idx}
-                    className={`bg-gradient-to-br ${stat.color} text-white rounded-lg p-4 shadow-lg transition transform hover:scale-105`}
+                    className={`${stat.bgColor} rounded-xl p-6 border border-gray-200 transition-all duration-300 hover:shadow-lg hover:-translate-y-1 cursor-default`}
                 >
-                    <div className="text-3xl mb-2">{stat.icon}</div>
-                    <div className="text-3xl font-bold">{stat.value}</div>
-                    <div className="text-sm opacity-90">{stat.label}</div>
+                    <div className={`text-4xl mb-3`}>{stat.icon}</div>
+                    <div className={`text-3xl font-bold ${stat.textColor}`}>{stat.value}</div>
+                    <div className={`text-sm font-medium ${stat.textColor} opacity-75 mt-1`}>{stat.label}</div>
                     {stat.percentage !== undefined && (
-                        <div className="mt-2 text-xs opacity-80">
-                            {stat.percentage}% xong
+                        <div className="mt-3 h-2 bg-gray-200 rounded-full overflow-hidden">
+                            <div 
+                                className={`h-full bg-gradient-to-r ${stat.color}`}
+                                style={{width: `${stat.percentage}%`}}
+                            ></div>
                         </div>
                     )}
                 </div>

@@ -77,28 +77,29 @@ function App() {
   const editingTask = editingId ? tasks.find(t => t.id === editingId) : null;
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 p-4 md:p-8">
-      <div className="max-w-4xl mx-auto">
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
+      <div className="max-w-7xl mx-auto px-4 md:px-8 py-8">
         
         {/* Header */}
-        <div className="text-center mb-8">
-          <h1 className="text-4xl md:text-5xl font-bold text-gray-800 mb-2">
-            📋 Quản Lý Công Việc
+        <div className="text-center mb-12">
+          <h1 className="text-5xl md:text-6xl font-black text-white mb-2 tracking-tight">
+            Quản Lý Công Việc
           </h1>
-          <p className="text-gray-600">Quản lý công việc cá nhân hiệu quả</p>
+          <p className="text-lg text-purple-200">Tối ưu hóa năng suất với ứng dụng quản lý công việc hiện đại</p>
+          <div className="mt-4 h-1 w-16 bg-gradient-to-r from-blue-400 to-purple-500 mx-auto rounded-full"></div>
         </div>
 
         {/* Stats */}
         <TaskStats stats={stats} />
 
         {/* Main Content Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 my-8">
           
           {/* Form Section */}
           <div className="lg:col-span-1">
-            <div className="bg-white rounded-xl shadow-lg p-6 sticky top-4">
-              <h2 className="text-xl font-bold mb-4 text-gray-800">
-                {editingId ? '✏️ Sửa Công Việc' : '➕ Thêm Công Việc'}
+            <div className="bg-white bg-opacity-95 backdrop-blur rounded-2xl shadow-2xl p-8 sticky top-8 border border-purple-100">
+              <h2 className="text-2xl font-bold mb-6 text-gray-800">
+                {editingId ? 'Chỉnh sửa công việc' : 'Tạo công việc mới'}
               </h2>
               <TaskForm 
                 addTask={addTask}
@@ -109,7 +110,7 @@ function App() {
           </div>
 
           {/* Tasks Section */}
-          <div className="lg:col-span-2 space-y-4">
+          <div className="lg:col-span-2 space-y-6">
             
             {/* Filter */}
             <TaskFilter 
@@ -120,11 +121,12 @@ function App() {
             />
 
             {/* Task List */}
-            <div className="bg-white rounded-xl shadow-lg overflow-hidden">
+            <div className="bg-white bg-opacity-95 backdrop-blur rounded-2xl shadow-2xl overflow-hidden border border-purple-100">
               {filteredTasks.length === 0 ? (
-                <div className="p-8 text-center text-gray-500">
-                  <p className="text-lg">Không có công việc nào</p>
-                  <p className="text-sm mt-2">Hãy thêm công việc mới để bắt đầu</p>
+                <div className="p-12 text-center">
+                  <div className="text-6xl mb-4">📭</div>
+                  <p className="text-xl font-semibold text-gray-700 mb-2">Không có công việc</p>
+                  <p className="text-gray-500">Bắt đầu bằng cách tạo công việc mới</p>
                 </div>
               ) : (
                 <TaskList 

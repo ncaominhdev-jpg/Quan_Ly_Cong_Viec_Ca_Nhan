@@ -1,4 +1,8 @@
+import { useState } from 'react';
+
 export default function TaskList({ tasks, deleteTask, updateTaskStatus, startEdit }) {
+    const [openDropdown, setOpenDropdown] = useState(null);
+
     const getStatusBadgeStyle = (status) => {
         switch (status) {
             case 'TODO':
@@ -109,8 +113,9 @@ export default function TaskList({ tasks, deleteTask, updateTaskStatus, startEdi
                             <div className="flex items-center gap-2 justify-end">
                                 
                                 {/* Status Dropdown */}
-                                <div className="relative group/status">
+                                <div className="relative">
                                     <button
+                                        onClick={() => setOpenDropdown(openDropdown === task.id ? null : task.id)}
                                         className={`px-4 py-2 rounded-lg text-sm font-semibold border-2 transition cursor-pointer ${getStatusBadgeStyle(task.status)} hover:shadow-md`}
                                         title="Thay đổi trạng thái"
                                     >
@@ -118,17 +123,22 @@ export default function TaskList({ tasks, deleteTask, updateTaskStatus, startEdi
                                     </button>
                                     
                                     {/* Dropdown Menu */}
-                                    <div className="absolute right-0 mt-2 w-48 bg-white border-2 border-gray-300 rounded-lg shadow-xl opacity-0 invisible group-hover/status:opacity-100 group-hover/status:visible transition-all z-10">
-                                        {getStatusOptions(task.status).map(status => (
-                                            <button
-                                                key={status}
-                                                onClick={() => updateTaskStatus(task.id, status)}
-                                                className="w-full text-left px-4 py-3 hover:bg-blue-50 transition text-sm font-medium text-gray-700 first:rounded-t-md last:rounded-b-md"
-                                            >
-                                                {getStatusIcon(status)} {status}
-                                            </button>
-                                        ))}
-                                    </div>
+                                    {openDropdown === task.id && (
+                                        <div className="absolute right-0 mt-2 w-48 bg-white border-2 border-gray-300 rounded-lg shadow-xl z-50">
+                                            {getStatusOptions(task.status).map(status => (
+                                                <button
+                                                    key={status}
+                                                    onClick={() => {
+                                                        updateTaskStatus(task.id, status);
+                                                        setOpenDropdown(null);
+                                                    }}
+                                                    className="w-full text-left px-4 py-3 hover:bg-blue-50 transition text-sm font-medium text-gray-700 first:rounded-t-md last:rounded-b-md"
+                                                >
+                                                    {getStatusIcon(status)} {status}
+                                                </button>
+                                            ))}
+                                        </div>
+                                    )}
                                 </div>
 
                                 {/* Edit Button */}

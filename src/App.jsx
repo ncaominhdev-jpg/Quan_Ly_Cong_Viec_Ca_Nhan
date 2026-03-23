@@ -6,18 +6,14 @@ import TaskStats from './components/TaskStats';
 import './App.css'
 
 function App() {
-  const [tasks, setTasks] = useState([]);
+  // Initialize tasks from localStorage
+  const [tasks, setTasks] = useState(() => {
+    const savedTasks = localStorage.getItem('tasks');
+    return savedTasks ? JSON.parse(savedTasks) : [];
+  });
   const [filter, setFilter] = useState('ALL');
   const [searchTerm, setSearchTerm] = useState('');
   const [editingId, setEditingId] = useState(null);
-
-  // Load tasks from localStorage on mount
-  useEffect(() => {
-    const savedTasks = localStorage.getItem('tasks');
-    if (savedTasks) {
-      setTasks(JSON.parse(savedTasks));
-    }
-  }, []);
 
   // Save tasks to localStorage whenever they change
   useEffect(() => {

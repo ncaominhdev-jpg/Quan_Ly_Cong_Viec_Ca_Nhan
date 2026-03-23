@@ -15,7 +15,8 @@ export default function TaskForm({ addTask, editingTask, cancelEdit }) {
             setDeadline("");
             setStatus("TODO");
         }
-    }, [editingTask]);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [editingTask?.id]);
 
     const handleSubmit = (e) => {
         e.preventDefault();

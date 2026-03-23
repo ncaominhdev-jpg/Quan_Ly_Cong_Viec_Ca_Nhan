@@ -77,3 +77,44 @@ textarea:focus {
   border-color: rgba(124, 58, 202, 0.5);
   box-shadow: 0 0 0 3px rgba(124, 58, 202, 0.1);
 }
+
+/* SweetAlert2 Styling */
+.swal2-container {
+  z-index: 9999 !important;
+  position: fixed;
+}
+
+.swal2-popup {
+  border-radius: 12px !important;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.15) !important;
+}
+
+.swal2-modal {
+  z-index: 9999 !important;
+}
+
+.swal2-backdrop {
+  z-index: 9998 !important;
+  background-color: rgba(0, 0, 0, 0.5) !important;
+}
+
+.swal2-title {
+  font-size: 1.5rem !important;
+  font-weight: 600 !important;
+  color: #1f2937 !important;
+}
+
+.swal2-html-container {
+  font-size: 0.95rem !important;
+  color: #6b7280 !important;
+}
+
+.swal2-confirm {
+  border-radius: 8px !important;
+  padding: 0.5rem 1.5rem !important;
+}
+
+.swal2-cancel {
+  border-radius: 8px !important;
+  padding: 0.5rem 1.5rem !important;
+}

@@ -27,6 +27,10 @@ export default function TaskForm({ addTask, editingTask, cancelEdit }) {
                 title: "Lỗi",
                 text: "Vui lòng nhập tiêu đề!",
                 confirmButtonColor: "#8b5cf6",
+                allowOutsideClick: false,
+                didOpen: (modal) => {
+                    modal.style.zIndex = "9999";
+                }
             });
             return;
         }
@@ -37,6 +41,10 @@ export default function TaskForm({ addTask, editingTask, cancelEdit }) {
                 title: "Lỗi",
                 text: "Vui lòng chọn thời hạn!",
                 confirmButtonColor: "#8b5cf6",
+                allowOutsideClick: false,
+                didOpen: (modal) => {
+                    modal.style.zIndex = "9999";
+                }
             });
             return;
         }
@@ -54,6 +62,10 @@ export default function TaskForm({ addTask, editingTask, cancelEdit }) {
             showConfirmButton: false,
             timer: 1500,
             confirmButtonColor: "#8b5cf6",
+            allowOutsideClick: false,
+            didOpen: (modal) => {
+                modal.style.zIndex = "9999";
+            }
         });
 
         setTitle("");

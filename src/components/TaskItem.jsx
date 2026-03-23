@@ -72,6 +72,10 @@ export default function TaskItem({ task, deleteTask, updateTaskStatus, startEdit
             cancelButtonColor: '#6b7280',
             confirmButtonText: 'Xóa',
             cancelButtonText: 'Hủy',
+            allowOutsideClick: false,
+            didOpen: (modal) => {
+                modal.style.zIndex = "9999";
+            }
         });
 
         if (result.isConfirmed) {
@@ -81,6 +85,10 @@ export default function TaskItem({ task, deleteTask, updateTaskStatus, startEdit
                 title: 'Đã xóa!',
                 showConfirmButton: false,
                 timer: 1200,
+                allowOutsideClick: false,
+                didOpen: (modal) => {
+                    modal.style.zIndex = "9999";
+                }
             });
         }
     };
@@ -92,6 +100,10 @@ export default function TaskItem({ task, deleteTask, updateTaskStatus, startEdit
                 title: 'Lưu ý',
                 text: 'Công việc sắp đến hạn!',
                 confirmButtonColor: '#8b5cf6',
+                allowOutsideClick: false,
+                didOpen: (modal) => {
+                    modal.style.zIndex = "9999";
+                }
             });
         }
         startEdit(task);

@@ -12,6 +12,7 @@ function App() {
       <h1 className="text-3xl text-red-500 font-bold">
         Tailwind OK
       </h1>
+      <h1 className="text-3xl text-red-500">OK</h1>
     </>
   )
 }

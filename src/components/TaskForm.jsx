@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
+import Swal from "sweetalert2";
 
 export default function TaskForm({ addTask, editingTask, cancelEdit }) {
     const [title, setTitle] = useState("");
     const [deadline, setDeadline] = useState("");
     const [status, setStatus] = useState("TODO");
-    const [error, setError] = useState("");
 
     useEffect(() => {
         if (editingTask) {
@@ -16,20 +16,28 @@ export default function TaskForm({ addTask, editingTask, cancelEdit }) {
             setDeadline("");
             setStatus("TODO");
         }
-        setError("");
     }, [editingTask?.id]);
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        setError("");
 
         if (!title.trim()) {
-            setError("Vui lòng nhập tiêu đề");
+            Swal.fire({
+                icon: "error",
+                title: "Lỗi",
+                text: "Vui lòng nhập tiêu đề!",
+                confirmButtonColor: "#8b5cf6",
+            });
             return;
         }
 
         if (!deadline) {
-            setError("Vui lòng chọn thời hạn");
+            Swal.fire({
+                icon: "error",
+                title: "Lỗi",
+                text: "Vui lòng chọn thời hạn!",
+                confirmButtonColor: "#8b5cf6",
+            });
             return;
         }
 
@@ -37,6 +45,15 @@ export default function TaskForm({ addTask, editingTask, cancelEdit }) {
             title: title.trim(),
             deadline,
             status,
+        });
+
+        // Success alert
+        Swal.fire({
+            icon: "success",
+            title: editingTask ? "Cập nhật thành công!" : "Tạo công việc thành công!",
+            showConfirmButton: false,
+            timer: 1500,
+            confirmButtonColor: "#8b5cf6",
         });
 
         setTitle("");
@@ -48,18 +65,11 @@ export default function TaskForm({ addTask, editingTask, cancelEdit }) {
         setTitle("");
         setDeadline("");
         setStatus("TODO");
-        setError("");
         if (cancelEdit) cancelEdit();
     };
 
     return (
         <form onSubmit={handleSubmit} className="space-y-4">
-            {error && (
-                <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg text-sm">
-                    {error}
-                </div>
-            )}
-
             <div>
                 <label className="block text-sm font-semibold text-gray-700 mb-2">
                     Tiêu đề

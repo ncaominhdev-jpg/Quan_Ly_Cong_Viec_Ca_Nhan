@@ -69,23 +69,23 @@ function App() {
   const editingTask = editingId ? tasks.find(t => t.id === editingId) : null;
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-400 py-12">
+    <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50 py-8">
       <div className="max-w-5xl mx-auto px-4">
         
         {/* Header */}
-        <div className="text-center mb-10">
-          <div className="flex items-center justify-center gap-3 mb-3">
-            <CheckCircle2 size={48} className="text-white" />
-            <h1 className="text-5xl font-bold text-white">Quản Lý Công Việc</h1>
+        <div className="text-center mb-6">
+          <div className="flex items-center justify-center gap-3 mb-2">
+            <CheckCircle2 size={40} className="text-indigo-600" />
+            <h1 className="text-4xl font-bold text-gray-800">Quản Lý Công Việc</h1>
           </div>
-          <p className="text-purple-100 text-lg">Quản lý công việc cá nhân một cách hiệu quả</p>
+          <p className="text-gray-600 text-base">Quản lý công việc cá nhân một cách hiệu quả</p>
         </div>
 
         {/* Stats */}
         <TaskStats stats={stats} />
 
         {/* Main Content */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mt-8">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-5 mt-6">
           
           {/* Form Section */}
           <div className="lg:col-span-1">
@@ -102,7 +102,7 @@ function App() {
           </div>
 
           {/* List Section */}
-          <div className="lg:col-span-2 space-y-6">
+          <div className="lg:col-span-2 space-y-5">
             
             {/* Filter */}
             <TaskFilter 
